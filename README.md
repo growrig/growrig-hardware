@@ -1,4 +1,4 @@
-# GrowRig Hardware
+# GrowRig Open Hardware (GROH)
 
 Open hardware concepts for the GrowRig ecosystem — the physical devices that a
 [GrowRig](https://github.com/growrig/growrig) installation runs on. This repo
