@@ -1,0 +1,18 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# EDA / CAD scratch
+*-backups/
+*.bak
+*.kicad_prl
+fp-info-cache
+_autosave-*
+
+# Build / export artifacts
+gerbers/
+*.stl.tmp
+*.step.tmp

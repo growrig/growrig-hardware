@@ -1,0 +1,13 @@
+GrowRig Hardware — Licensing intent
+====================================
+
+This repository currently holds early-stage concepts and design notes. The
+intended licensing, to be finalized as projects mature, is:
+
+  - Hardware designs (schematics, PCB, mechanical): CERN-OHL-S v2 (or similar
+    open-hardware license). See https://ohwr.org/project/cernohl
+  - Firmware and software: a permissive OSS license (MIT or Apache-2.0).
+  - Documentation and design notes: CC BY-SA 4.0.
+
+Until per-project LICENSE files are added, treat everything here as
+"all rights reserved, open-source intended" — reach out before redistributing.
