@@ -28,7 +28,10 @@ several MCUs and the sensor set can be populated by variant.
   great for battery pucks) or **[XIAO ESP32-C6](https://www.seeedstudio.com/Seeed-Studio-XIAO-ESP32C6-p-5884.html)** (Wi-Fi 6 + BLE + 802.15.4/Thread,
   ESP-NOW). ESP32-C3/S3 also fit the socket for the no-CO₂ variant.
 - **Sensors:**
-  - Temp + RH + pressure: **BME280** (VPD; pressure is a bonus for DLI/vent logic)
+  - Temp + RH + pressure: **BME280** (VPD; pressure is a bonus for DLI/vent logic).
+    The SCD-41 also reports T/RH, so on the ideal variant the two cross-check each
+    other — but the SCD-41 self-heats (its reading runs a few °C warm), so BME280 is
+    the cleaner *ambient* source and the SCD-41's T/RH is the backup, not vice-versa.
   - Light: **AS7343** — 14-channel spectral, enough to estimate **PAR and PPFD**
     and do basic spectral analysis, not just a lux proxy
   - CO₂: **SCD-41** (true photoacoustic NDIR, not eCO₂) — ideal-version only
@@ -56,8 +59,10 @@ corner." It's what makes closed-loop control actually track the plant.
 
 - The variant split mostly answers "CO₂ on every unit?" — but is the no-CO₂ puck
   cheap/small enough to actually scatter several, or does the Logger Hat make it too bulky?
-- **BME280 RH accuracy** (±3 %) is looser than SHT4x (±1.8 %) and drifts more —
-  acceptable for VPD, or worth an SHT4x on the ideal variant?
+- **BME280 RH accuracy** (±3 %) is looser than SHT4x (±1.8 %) and drifts more.
+  On the ideal variant the SCD-41's own T/RH gives a second reading to sanity-check
+  against (once its self-heating offset is calibrated out) — is that redundancy
+  enough, or is an SHT4x still worth it for clean canopy VPD?
 - nRF52840 (BLE/Thread, best battery) vs. ESP32-C6 (Wi-Fi + ESP-NOW, easier ecosystem)
   as the default MCU.
 - Battery vs. permanently powered — most tents have 5 V nearby (matters most for SCD-41).
