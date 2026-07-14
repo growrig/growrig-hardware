@@ -28,13 +28,13 @@ several MCUs and the sensor set can be populated by variant.
   great for battery pucks) or **[XIAO ESP32-C6](https://www.seeedstudio.com/Seeed-Studio-XIAO-ESP32C6-p-5884.html)** (Wi-Fi 6 + BLE + 802.15.4/Thread,
   ESP-NOW). ESP32-C3/S3 also fit the socket for the no-CO₂ variant.
 - **Sensors:**
-  - Temp + RH + pressure: **BME280** (VPD; pressure is a bonus for DLI/vent logic).
+  - Temp + RH + pressure: **[BME280](https://www.bosch-sensortec.com/products/environmental-sensors/humidity-sensors-bme280/)** (VPD; pressure is a bonus for DLI/vent logic).
     The SCD-41 also reports T/RH, so on the ideal variant the two cross-check each
     other — but the SCD-41 self-heats (its reading runs a few °C warm), so BME280 is
     the cleaner *ambient* source and the SCD-41's T/RH is the backup, not vice-versa.
-  - Light: **AS7343** — 14-channel spectral, enough to estimate **PAR and PPFD**
+  - Light: **[AS7343](https://ams-osram.com/products/sensor-solutions/ambient-light-color-spectral-proximity-sensors/ams-as7343-spectral-sensor)** — 14-channel spectral, enough to estimate **PAR and PPFD**
     and do basic spectral analysis, not just a lux proxy
-  - CO₂: **SCD-41** (true photoacoustic NDIR, not eCO₂) — ideal-version only
+  - CO₂: **[SCD-41](https://sensirion.com/products/catalog/SCD41)** (true photoacoustic NDIR, not eCO₂) — ideal-version only
 - **Power:** LiPo with USB-C charging; target weeks per charge in duty-cycled mode.
   Optional 5 V always-on for the SCD-41 (NDIR/photoacoustic is power-hungry).
 - **Comms:** BLE / ESP-NOW / Thread depending on the MCU populated; reports to the

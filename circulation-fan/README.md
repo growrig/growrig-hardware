@@ -23,7 +23,12 @@ night quiet mode).
 
 - **Fan:** off-the-shelf 120–140 mm 4-pin PWM fan (24 V or 12 V), quiet high-static
   variant
-- **Mount:** printable clamp/gooseneck for tent poles; printable shroud to focus flow
+- **Mount:** ideally a printable extension of Andrej / MX_creations'
+  [Strongsnap MXG_1 grow-tent fan holder](https://www.printables.com/model/1153779-grow-tent-fan-holder-strongsnap-mxg_1-1622mm)
+  (snap-fit clamp for ~16.22 mm tent poles) — reuse his snap interface and publish our
+  shroud/driver mount as a compatible module rather than reinventing the pole clamp.
+  He already ships a [120/140/180/200 mm fan adapter](https://www.printables.com/model/1168950-180120140200mm-fan-adapter-for-strongsnap-mxg_1-gr/)
+  for the same system. Printable shroud to focus flow.
 - **Control:**
   - **Simple:** PWM + tach passthrough to a Controller Board channel
   - **Smart:** small ESP32-C3 driver node (ESP-NOW/Wi-Fi) for standalone speed curves
@@ -42,6 +47,9 @@ mount and a PC fan — while still being a first-class, controllable node.
 - Single fan vs. a small array on one driver.
 - 12 V vs. 24 V to match the Controller Board bus.
 - How much lives in a shared "ESP driver node" reused by other DIY devices.
+- Building on the MXG_1 snap interface: confirm its license permits derivatives and
+  that it's compatible with this repo's open-hardware licensing — or design a
+  clean-room snap profile if not.
 
 ## Related
 
