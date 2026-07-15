@@ -45,7 +45,8 @@ The controller is a low-voltage device. Mains equipment is switched through exte
        fans / pumps / valves / sensors / external relays
 ```
 
-## Draft specification
+
+## Hardware
 
 ### Compute
 
@@ -68,7 +69,7 @@ The controller is a low-voltage device. Mains equipment is switched through exte
   - Target profile: 20 V / 3 A, up to 60 W
   - Standalone PD negotiation so the board does not depend on MCU firmware to receive power
 - **Optional input:** 12–24 V DC terminal or locking connector
-- **Optional backup battery:** protected single-cell 3.7 V LiPo
+- **Backup battery support:** protected single-cell 3.7 V LiPo, with approximately 1,000 mAh as the default target
 - Protected input stage with fuse, reverse-polarity protection, transient suppression and current limiting
 - On-board conversion to 12 V, 5 V and 3.3 V rails
 - Dedicated charger and power-path controller for seamless switching between external power and the LiPo
@@ -78,7 +79,7 @@ The controller is a low-voltage device. Mains equipment is switched through exte
 
 ### Backup battery
 
-The optional 3.7 V LiPo is intended to keep the controller electronics alive during a power outage. It is not intended to power grow lights, heaters, pumps or normal 12/24 V actuator loads.
+The included 3.7 V LiPo backup support is intended to keep the controller electronics alive during a power outage. A replaceable battery of approximately 1,000 mAh is the initial default target. It is not intended to power grow lights, heaters, pumps or normal 12/24 V actuator loads.
 
 When external power fails, the controller should:
 
@@ -106,16 +107,18 @@ The battery should be replaceable and use:
 
 Initial target:
 
-- 2× four-pin fan outputs with PWM control and tachometer feedback
-- 2× 0–10 V or open-drain PWM control outputs for compatible EC fans and lights
-- 4–6× protected 12/24 V outputs for DC fans, pumps, valves and solenoids
-- 3–4× low-voltage control outputs for external relays, SSRs or contactors
+- 2× 0–10 V or open-drain PWM control outputs for compatible grow lights and EC equipment
+- 4× protected 12/24 V outputs for DC fans, pumps, valves and solenoids
+- Optional dedicated 12 V four-pin PC fan connectors with PWM control and tachometer feedback
+- 6× configurable low-voltage control/monitor I/O for external devices and sensors
 - Per-channel current or fault feedback where practical
 - Hardware pull-downs so dangerous outputs remain off during startup and reset
 
+Standard four-pin PC fan connectors are suitable for 12 V fans only. Generic 12/24 V load outputs should use separate locking or pluggable connectors.
+
 ### Inputs and sensors
 
-- I²C headers for local environmental sensors and displays
+- I²C headers for local environmental sensors
 - 1-Wire bus for temperature sensors
 - Analog inputs for soil, pressure, level and other sensors
 - Pulse/frequency inputs for flow meters and fan tachometers
@@ -127,15 +130,18 @@ External sensor buses should use protected connectors. Long cables should use CA
 
 ### Display and local interface
 
-Optional header for:
+The controller should support an optional OLED, e-paper or touch display located up to several metres away.
 
-- small I²C OLED;
-- low-power e-ink display;
-- status LEDs;
-- buzzer;
-- buttons or rotary encoder.
+The display should be implemented as an independent module with its own small MCU and connected through a robust bus such as CAN or RS-485. The same connection may carry display data, touch events, buttons and other local-interface input. Raw I²C or SPI should not be exposed for the display connection.
 
-The local interface can show environmental values, output states, faults and Hub/network status without opening the application.
+The display module may provide:
+
+- OLED, e-paper or touch display;
+- status LEDs and buzzer;
+- buttons or rotary encoder;
+- ambient-light or proximity sensing.
+
+It can show environmental values, output states, faults and Hub/network status without opening the main application.
 
 ### Safety and offline operation
 
@@ -199,7 +205,7 @@ It can be assembled as a DIY controller while also serving as the basis for opti
 - SPI versus UART for the inter-processor protocol
 - CAN only versus CAN plus isolated RS-485
 - USB-C PD only versus USB-C PD plus a locking DC input
-- LiPo capacity, connector and whether the battery is standard or optional
+- Final LiPo capacity, connector and replaceability; approximately 1,000 mAh is the current default target
 - Whether any emergency output should remain powered from the backup battery
 - Socketed XIAO for all versions versus surface-mounted XIAO in production
 - Connector family for sensors and actuators
