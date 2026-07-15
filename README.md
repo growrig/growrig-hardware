@@ -13,7 +13,7 @@ firmware, open enclosures, buildable from off-the-shelf parts wherever possible.
 
 | Project | Codename | What it is | Maturity |
 |---|---|---|---|
-| [Controller Board](controller-board/) | — | ESP32 board that runs a grow tent (fans, lights, plugs, sensors) | Concept |
+| [Controller](controller/) | — | ESP32 board that runs a grow tent (fans, lights, plugs, sensors) | Concept |
 | [Canopy Sensor](canopy-sensor/) | — | Wireless micro-climate probe for the canopy (temp, RH, light, CO₂) | Concept |
 | [Hub](hub/) | — | Appliance computer running Grow Core + Home Assistant | Concept |
 | [Gateway](gateway/) | — | Grow-focused router; isolates the grow network from the home LAN | Concept |
